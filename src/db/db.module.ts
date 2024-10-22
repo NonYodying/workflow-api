@@ -14,7 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             password: config.get('DB_PASSWORD'),
             database: config.get('DB_DATABASE'),
             autoLoadEntities: config.get('DB_AUTO_LOAD_ENTITIES'),
-            synchronize: config.get('DB_SYNCHRONIZE')
+            synchronize: config.get('DB_SYNCHRONIZE'),
         })
     })]
 })
