@@ -1,0 +1,19 @@
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "username": "u1003",
+    "password": "changeit",
+    "role": "USER"
+}
+
+
+## create bad request role
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "username": "u1004",
+    "password": "changeit",
+    "role": "userr"
+}
