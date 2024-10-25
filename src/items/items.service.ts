@@ -2,14 +2,13 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Item } from './entities/item.entity';
+import { Item, ItemStatus } from './entities/item.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class ItemsService {
-
   constructor(
-    @InjectRepository(Item) private itemRepository: Repository<Item>
+    @InjectRepository(Item) private itemRepository: Repository<Item>,
   ) {}
 
   create(createItemDto: CreateItemDto) {
@@ -26,16 +25,38 @@ export class ItemsService {
 
   update(id: number, updateItemDto: UpdateItemDto) {
     return this.itemRepository.save({
-      id, ...updateItemDto
-    })
+      id,
+      ...updateItemDto,
+    });
   }
 
   async remove(id: number) {
-    const item = await this.itemRepository.findOneBy({ id })
+    const item = await this.itemRepository.findOneBy({ id });
     if (!item) {
-      throw new NotFoundException(`Not found: id=${id}`)
+      throw new NotFoundException(`Not found: id=${id}`);
     }
 
-    return this.itemRepository.delete({ id })
+    return this.itemRepository.delete({ id });
+  }
+
+  async approve(id: number) {
+    // id should not empty
+    if (!id) {
+      throw new NotFoundException(`id should not empty`);
+    }
+
+    // item should found
+    const item = await this.itemRepository.findOneBy({ id });
+    if (!item) {
+      throw new NotFoundException(`not found: id={}`);
+    }
+
+    // prepare items
+    // const approveItem = {...item, status: ItemStatus.APPROVED}
+    // return await this.itemRepository.save(approveItem)
+
+    item.status = ItemStatus.APPROVED;
+
+    return await this.itemRepository.save(item);
   }
 }

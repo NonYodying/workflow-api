@@ -2,13 +2,13 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "username": "u1003",
+    "username": "u1006",
     "password": "changeit",
     "role": "USER"
 }
 
 
-## create bad request role
+### create bad request role
 POST http://localhost:3000/users
 Content-Type: application/json
 
@@ -16,4 +16,17 @@ Content-Type: application/json
     "username": "u1004",
     "password": "changeit",
     "role": "userr"
+}
+
+###
+### Admin Zone
+###
+### create
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "username": "a1001",
+    "password": "changeit",
+    "role": "ADMIN"
 }
