@@ -24,6 +24,11 @@ export class Item {
   contactMobileNo: string;
 
   @Column({
+    nullable: true,
+  })
+  description: string; // add
+
+  @Column({
     nullable: false,
     default: ItemStatus.PENDING
   })
