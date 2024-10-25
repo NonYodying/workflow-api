@@ -1,9 +1,10 @@
+// user.entity.ts
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 export enum Role {
-    USER = 'USER',
-    ADMIN = 'ADMIN',
-    MANAGER = 'MANAGER'
+  USER = 'USER',
+  ADMIN = 'ADMIN',
+  MANAGER = 'MANAGER'  
 }
 
 @Entity()
@@ -16,10 +17,16 @@ export class User {
         unique: true
     })
     username: string;
-    
+
+    @Column({
+      nullable: true
+    })
+    description: string; // add
+
     @Column()
     password: string;
     
     @Column()
-    role: Role
+    role: Role;
 }
+
