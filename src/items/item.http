@@ -3,10 +3,10 @@ POST http://localhost:3000/items
 Content-Type: application/json
 
 {
-    "title": "Mouse",
-    "amount": 10,
-    "price": 5000,
-    "contactMobileNo": "0891234567"
+   "title": "SSD Storage",
+      "amount": 10,
+      "price": 500,
+      "contactMobileNo": "0890123456"
 }
 
 ### find all
